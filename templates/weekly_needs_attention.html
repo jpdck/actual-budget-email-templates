@@ -1,0 +1,103 @@
+<!--
+  Weekly Budget Check -- Needs Attention
+  Subject: Weekly Budget Check -- Needs Attention: N item(s) ({{DATE}})
+  (N = count of Cautions + Budget Bending-to-Breaking items)
+
+  Used when the run completed successfully and there's at least one Caution or
+  Budget Bending-to-Breaking item. "Getting tight" (Bending-to-Breaking) is the most
+  urgent section and goes first when present. "Worth a heads-up" (Cautions) comes next.
+  Wins go last, if any -- good news doesn't get buried, but urgency comes first.
+
+  Tone: direct and honest, not alarmist. State the fact, then a short supportive nudge --
+  never scold, never imply the person did something wrong.
+
+  Placeholders to fill in:
+    {{DATE}}                 -- today's date, e.g. "Jul 26, 2026"
+    {{ITEM_COUNT}}            -- count of Cautions + Bending-to-Breaking items, used in banner
+    {{COMPARISON_SUMMARY}}    -- condensed line, e.g. "Comparisons: WoW, MoM, YoY -- 14 categories reviewed"
+    {{BENDING_ROWS}}          -- <tr> rows for Getting tight (Category, Pace, Why flagged) -- OMIT block if none
+    {{CAUTIONS_ROWS}}         -- <tr> rows for Worth a heads-up (Category, Pace, Why flagged) -- OMIT block if none
+    {{WINS_ROWS}}             -- <tr> rows for Wins (Category, What improved, Comparison) -- OMIT block if none
+-->
+<div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;color:#1f2328;">
+
+  <!-- Status banner -->
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#fff3cd;border:1px solid #ffe69c;border-radius:6px;margin-bottom:20px;">
+    <tr>
+      <td style="padding:16px 20px;">
+        <p style="margin:0;font-size:16px;font-weight:bold;color:#664d03;">
+          {{ITEM_COUNT}} thing(s) worth a look this week
+        </p>
+      </td>
+    </tr>
+  </table>
+
+  <h1 style="font-size:18px;margin:0 0 12px 0;">Weekly Budget Check</h1>
+  <p style="margin:0 0 20px 0;font-size:13px;color:#57606a;">{{COMPARISON_SUMMARY}}</p>
+
+  <!-- GETTING TIGHT (Budget Bending-to-Breaking) -- most urgent, placed first when non-empty -->
+  <!-- OMIT this entire block if nothing is over or clearly tracking to blow the budget -->
+  <h2 style="font-size:15px;margin:0 0 8px 0;color:#842029;">Getting tight</h2>
+  <p style="margin:0 0 10px 0;font-size:13px;color:#57606a;line-height:1.5;">
+    These are already over budget or clearly on track to go there. Worth a look before the period closes out.
+  </p>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;background-color:#fff5f5;border:1px solid #f1aeb5;border-radius:6px;margin-bottom:20px;overflow:hidden;">
+    <tr style="background-color:#f8d7da;">
+      <th align="left" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#842029;border-bottom:1px solid #f1aeb5;">Category</th>
+      <th align="left" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#842029;border-bottom:1px solid #f1aeb5;">Pace</th>
+      <th align="left" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#842029;border-bottom:1px solid #f1aeb5;">Why it's flagged</th>
+    </tr>
+    {{BENDING_ROWS}}
+    <!-- Row template:
+    <tr>
+      <td style="padding:10px 12px;font-size:13px;border-bottom:1px solid #f1aeb5;">{{category}}</td>
+      <td style="padding:10px 12px;font-size:13px;border-bottom:1px solid #f1aeb5;">{{pace}}</td>
+      <td style="padding:10px 12px;font-size:13px;border-bottom:1px solid #f1aeb5;">{{why_flagged}}</td>
+    </tr>
+    -->
+  </table>
+
+  <!-- WORTH A HEADS-UP (Cautions) -->
+  <!-- OMIT this entire block if nothing is trending toward overspending -->
+  <h2 style="font-size:15px;margin:0 0 8px 0;color:#664d03;">Worth a heads-up</h2>
+  <p style="margin:0 0 10px 0;font-size:13px;color:#57606a;line-height:1.5;">
+    Not urgent, but trending in a direction that's worth keeping an eye on.
+  </p>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;background-color:#fffbeb;border:1px solid #ffe69c;border-radius:6px;margin-bottom:20px;overflow:hidden;">
+    <tr style="background-color:#fff3cd;">
+      <th align="left" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#664d03;border-bottom:1px solid #ffe69c;">Category</th>
+      <th align="left" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#664d03;border-bottom:1px solid #ffe69c;">Pace</th>
+      <th align="left" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#664d03;border-bottom:1px solid #ffe69c;">Why it's flagged</th>
+    </tr>
+    {{CAUTIONS_ROWS}}
+    <!-- Row template:
+    <tr>
+      <td style="padding:10px 12px;font-size:13px;border-bottom:1px solid #ffe69c;">{{category}}</td>
+      <td style="padding:10px 12px;font-size:13px;border-bottom:1px solid #ffe69c;">{{pace}}</td>
+      <td style="padding:10px 12px;font-size:13px;border-bottom:1px solid #ffe69c;">{{why_flagged}}</td>
+    </tr>
+    -->
+  </table>
+
+  <!-- Wins -- OMIT this entire block if there's nothing genuinely notable -->
+  <h2 style="font-size:15px;margin:0 0 8px 0;color:#0f5132;">Wins</h2>
+  <p style="margin:0 0 10px 0;font-size:13px;color:#57606a;line-height:1.5;">
+    Amid the above, a few things trending the right direction too.
+  </p>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;background-color:#f4fbf7;border:1px solid #a3cfbb;border-radius:6px;margin-bottom:8px;overflow:hidden;">
+    <tr style="background-color:#d1e7dd;">
+      <th align="left" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#0f5132;border-bottom:1px solid #a3cfbb;">Category</th>
+      <th align="left" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#0f5132;border-bottom:1px solid #a3cfbb;">What improved</th>
+      <th align="left" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#0f5132;border-bottom:1px solid #a3cfbb;">Vs.</th>
+    </tr>
+    {{WINS_ROWS}}
+    <!-- Row template:
+    <tr>
+      <td style="padding:10px 12px;font-size:13px;border-bottom:1px solid #a3cfbb;">{{category}}</td>
+      <td style="padding:10px 12px;font-size:13px;border-bottom:1px solid #a3cfbb;">{{what_improved}}</td>
+      <td style="padding:10px 12px;font-size:13px;border-bottom:1px solid #a3cfbb;">{{comparison}}</td>
+    </tr>
+    -->
+  </table>
+
+</div>
