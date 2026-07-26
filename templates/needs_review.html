@@ -1,0 +1,99 @@
+<!--
+  Actual Budget -- Daily Refresh: N Need Review
+  Subject: Actual Budget -- Daily Refresh: {{FLAGGED_COUNT}} Need Review ({{DATE}})
+
+  Used when the run completed cleanly (sync ok) but 1+ transactions were flagged
+  for the recipient's attention. This is the highest-priority variant -- the "Needs your
+  attention" table is placed near the top. Auto-categorized and New rules sections
+  are included only if non-empty.
+
+  Placeholders to fill in:
+    {{DATE}}                  -- today's date, e.g. "Jul 26, 2026"
+    {{FLAGGED_COUNT}}         -- count of flagged transactions, used in subject + banner
+    {{START_DATE}}            -- 7 days before today
+    {{END_DATE}}              -- today
+    {{SYNC_STATUS}}           -- e.g. "Success (5 of 5 accounts synced)"
+    {{TOTAL_REVIEWED}}        -- count of transactions reviewed in the window
+    {{AUTO_CATEGORIZED_COUNT}} -- count, used in the banner line
+    {{ATTENTION_ROWS}}        -- <tr> rows for the Needs your attention table (Date, Payee, Amount, Reason)
+    {{AUTO_CATEGORIZED_ROWS}} -- <tr> rows for the Auto-categorized table (Payee, Amount, Category)
+    {{NEW_RULES_LIST}}        -- <li> items naming payee pattern + category
+-->
+<div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;color:#1f2328;">
+
+  <!-- Status banner -->
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#fff3cd;border:1px solid #ffe69c;border-radius:6px;margin-bottom:20px;">
+    <tr>
+      <td style="padding:16px 20px;">
+        <p style="margin:0;font-size:16px;font-weight:bold;color:#664d03;">
+          {{FLAGGED_COUNT}} item(s) need your review &mdash; {{TOTAL_REVIEWED}} transactions reviewed, {{AUTO_CATEGORIZED_COUNT}} auto-categorized
+        </p>
+      </td>
+    </tr>
+  </table>
+
+  <h1 style="font-size:18px;margin:0 0 12px 0;">Actual Budget &mdash; Daily Refresh</h1>
+
+  <!-- NEEDS YOUR ATTENTION -- most important section, placed near the top -->
+  <h2 style="font-size:15px;margin:0 0 8px 0;color:#842029;">Needs your attention</h2>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;background-color:#fff5f5;border:1px solid #f1aeb5;border-radius:6px;margin-bottom:20px;overflow:hidden;">
+    <tr style="background-color:#f8d7da;">
+      <th align="left" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#842029;border-bottom:1px solid #f1aeb5;">Date</th>
+      <th align="left" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#842029;border-bottom:1px solid #f1aeb5;">Payee</th>
+      <th align="right" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#842029;border-bottom:1px solid #f1aeb5;">Amount</th>
+      <th align="left" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#842023;border-bottom:1px solid #f1aeb5;">Reason</th>
+    </tr>
+    {{ATTENTION_ROWS}}
+    <!-- Row template:
+    <tr>
+      <td style="padding:10px 12px;font-size:13px;border-bottom:1px solid #f1aeb5;">{{date}}</td>
+      <td style="padding:10px 12px;font-size:13px;border-bottom:1px solid #f1aeb5;">{{payee}}</td>
+      <td align="right" style="padding:10px 12px;font-size:13px;border-bottom:1px solid #f1aeb5;">{{amount}}</td>
+      <td style="padding:10px 12px;font-size:13px;border-bottom:1px solid #f1aeb5;">{{reason}}</td>
+    </tr>
+    -->
+  </table>
+
+  <!-- Run details -->
+  <h2 style="font-size:15px;margin:0 0 8px 0;">Run details</h2>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:13px;margin-bottom:20px;">
+    <tr>
+      <td style="padding:3px 0;color:#57606a;width:160px;">Date range reviewed</td>
+      <td style="padding:3px 0;">{{START_DATE}} &ndash; {{END_DATE}}</td>
+    </tr>
+    <tr>
+      <td style="padding:3px 0;color:#57606a;">Sync status</td>
+      <td style="padding:3px 0;">{{SYNC_STATUS}}</td>
+    </tr>
+    <tr>
+      <td style="padding:3px 0;color:#57606a;">Transactions reviewed</td>
+      <td style="padding:3px 0;">{{TOTAL_REVIEWED}}</td>
+    </tr>
+  </table>
+
+  <!-- Auto-categorized -- OMIT entirely if zero transactions were categorized -->
+  <h2 style="font-size:15px;margin:0 0 8px 0;">Auto-categorized</h2>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;border:1px solid #d0d7de;border-radius:6px;margin-bottom:20px;">
+    <tr style="background-color:#f6f8fa;">
+      <th align="left" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#57606a;border-bottom:1px solid #d0d7de;">Payee</th>
+      <th align="right" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#57606a;border-bottom:1px solid #d0d7de;">Amount</th>
+      <th align="left" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#57606a;border-bottom:1px solid #d0d7de;">Category</th>
+    </tr>
+    {{AUTO_CATEGORIZED_ROWS}}
+    <!-- Row template:
+    <tr>
+      <td style="padding:10px 12px;font-size:13px;border-bottom:1px solid #d0d7de;">{{payee}}</td>
+      <td align="right" style="padding:10px 12px;font-size:13px;border-bottom:1px solid #d0d7de;">{{amount}}</td>
+      <td style="padding:10px 12px;font-size:13px;border-bottom:1px solid #d0d7de;">{{category}}</td>
+    </tr>
+    -->
+  </table>
+
+  <!-- New rules created -- OMIT entirely if zero rules were created -->
+  <h2 style="font-size:15px;margin:0 0 8px 0;">New rules created</h2>
+  <ul style="font-size:13px;margin:0;padding-left:20px;line-height:1.6;">
+    {{NEW_RULES_LIST}}
+    <!-- Item template: <li>{{payee pattern}} &rarr; {{category}}</li> -->
+  </ul>
+
+</div>
