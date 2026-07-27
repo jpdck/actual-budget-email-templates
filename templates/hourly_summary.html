@@ -1,0 +1,59 @@
+<!--
+  Hourly Receipt Processor -- Summary
+  Subject: Receipt Processor -- {{LOGGED_COUNT}} logged, {{NEEDS_INFO_COUNT}} need info ({{DATE}} {{TIME}})
+
+  Used for every normal run (tools reachable, scan completed) regardless of
+  outcome -- covers everything from "nothing in the inbox" to "several
+  transactions logged and a couple flagged." Logged / Needs a reply sections
+  are included only if non-empty; Skipped is always a one-line count (never a
+  per-email list, since newsletters/non-receipts aren't worth enumerating).
+
+  Placeholders to fill in:
+    {{DATE}}              -- today's date, e.g. "Jul 27, 2026"
+    {{TIME}}              -- run time, e.g. "3:00 PM"
+    {{SUMMARY_LINE}}       -- one line, e.g. "Scanned 9 unread: logged 4, skipped 3, 2 need your reply."
+    {{SCANNED_COUNT}}      -- total unread emails scanned this run
+    {{LOGGED_COUNT}}       -- count of transactions created, used in subject + banner
+    {{SKIPPED_COUNT}}      -- count of non-receipt emails marked read and left in place
+    {{NEEDS_INFO_COUNT}}   -- count of emails replied to and moved to Needs Info, used in subject
+    {{LOGGED_ROWS}}        -- <li> items for Logged (merchant, amount, account, category)
+    {{NEEDS_INFO_ROWS}}    -- <li> items for Needs a reply (which email/subject, what was asked)
+-->
+<div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;color:#1f2328;">
+
+  <!-- Status banner -->
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#d1e7dd;border:1px solid #a3cfbb;border-radius:6px;margin-bottom:20px;">
+    <tr>
+      <td style="padding:16px 20px;">
+        <p style="margin:0;font-size:16px;font-weight:bold;color:#0f5132;">
+          {{SUMMARY_LINE}}
+        </p>
+      </td>
+    </tr>
+  </table>
+
+  <h1 style="font-size:18px;margin:0 0 12px 0;">Receipt Processor</h1>
+  <p style="margin:0 0 20px 0;font-size:13px;color:#57606a;">{{DATE}} &middot; {{TIME}} &middot; {{SCANNED_COUNT}} unread scanned &middot; {{SKIPPED_COUNT}} skipped (not receipts)</p>
+
+  <!-- Logged -- OMIT entirely if zero transactions were created -->
+  <h2 style="font-size:15px;margin:0 0 8px 0;color:#0f5132;">Logged</h2>
+  <p style="margin:0 0 10px 0;font-size:13px;color:#57606a;line-height:1.5;">
+    Clear receipts, entered straight into the budget.
+  </p>
+  <ul style="font-size:13px;margin:0 0 20px 0;padding-left:20px;line-height:1.7;">
+    {{LOGGED_ROWS}}
+    <!-- Item template: <li><strong>{{merchant}}</strong> &mdash; {{amount}}, {{account}}, {{category}}</li> -->
+  </ul>
+
+  <!-- Needs a reply -- OMIT entirely if zero emails needed follow-up -->
+  <h2 style="font-size:15px;margin:0 0 8px 0;color:#664d03;">Needs a reply</h2>
+  <p style="margin:0 0 10px 0;font-size:13px;color:#57606a;line-height:1.5;">
+    Wasn't confident enough to guess, so a reply went out asking. Reply to that
+    email and it'll get logged next run.
+  </p>
+  <ul style="font-size:13px;margin:0;padding-left:20px;line-height:1.7;">
+    {{NEEDS_INFO_ROWS}}
+    <!-- Item template: <li><strong>{{email_subject}}</strong> &mdash; asked: {{question_asked}}</li> -->
+  </ul>
+
+</div>

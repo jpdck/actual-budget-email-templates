@@ -9,7 +9,7 @@ are `{{UPPER_SNAKE_CASE}}` — replace them with real values before sending.
 Row/list templates for repeating table rows are given as HTML comments
 directly beneath each `{{..._ROWS}}` / `{{..._LIST}}` placeholder.
 
-There are three independent template families, one per workflow:
+There are four independent template families, one per workflow:
 
 ## Daily Refresh (categorization)
 
@@ -106,3 +106,32 @@ to a couple of sentences.
 
 - `templates/monthly_all_clear.html` — clean sweep, nothing to flag (Auto-fixed optional)
 - `templates/monthly_needs_review.html` — clean sweep, N items flagged for review
+
+## Hourly Receipt Processor (receipt mailbox)
+
+| Situation | File | Subject |
+|---|---|---|
+| Step 2 failed (can't reach the mailbox / Actual Budget) | `templates/hourly_failed.html` | `Receipt Processor -- FAILED (<date> <time>)` |
+| Normal run (any outcome — nothing found, transactions logged, replies sent) | `templates/hourly_summary.html` | `Receipt Processor -- N logged, N need info (<date> <time>)` |
+
+Unlike the other three workflows, there's only one non-failure variant here:
+the summary template covers everything from an empty inbox to several
+transactions logged and a couple of emails flagged, since this runs hourly
+and a full outcome/no-outcome split would be more noise than signal at that
+cadence. Skipped (non-receipt) emails are always a one-line count, never an
+itemized list — newsletters and personal mail aren't worth enumerating.
+
+### Section rules (Hourly Receipt Processor)
+
+- **Status banner**: always present, always first, holds the one-line summary.
+- **Logged**: only if 1+ transactions were created this run.
+- **Needs a reply**: only if 1+ emails needed a follow-up question.
+- **Failure detail**: only on the FAILED variant.
+
+Never render an empty list or a "None" placeholder — omit the section
+(heading + list) entirely instead.
+
+### Files (Hourly Receipt Processor)
+
+- `templates/hourly_failed.html` — hard failure variant
+- `templates/hourly_summary.html` — normal run, any outcome (Logged / Needs a reply optional)
