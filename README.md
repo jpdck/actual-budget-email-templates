@@ -9,7 +9,7 @@ are `{{UPPER_SNAKE_CASE}}` — replace them with real values before sending.
 Row/list templates for repeating table rows are given as HTML comments
 directly beneath each `{{..._ROWS}}` / `{{..._LIST}}` placeholder.
 
-There are two independent template families, one per workflow:
+There are three independent template families, one per workflow:
 
 ## Daily Refresh (categorization)
 
@@ -73,3 +73,36 @@ Never render an empty table or a "None" placeholder — omit the section
 - `templates/weekly_failed.html` — hard failure variant
 - `templates/weekly_all_clear.html` — clean run, nothing flagged (Wins optional)
 - `templates/weekly_needs_attention.html` — clean run, N items flagged (all three sections shown, for reference)
+
+## Monthly Budget Cleanup (uncategorized + duplicate sweep)
+
+| Situation | File | Subject |
+|---|---|---|
+| Ran clean, nothing to flag | `templates/monthly_all_clear.html` | `Monthly Budget Cleanup - <Month> <Year>` |
+| Ran clean, N items flagged for review | `templates/monthly_needs_review.html` | `Monthly Budget Cleanup - <Month> <Year>` |
+
+This workflow has no FAILED variant — its prompt doesn't define a hard
+connectivity check the way the Daily Refresh and Weekly Budget Check
+workflows do. "Auto-fixed" covers both auto-categorized transactions and
+auto-reconciled duplicate pairs (the agent only auto-fixes when it's fully
+confident); "Needs your eyes" covers anything ambiguous — uncertain
+category, possible-but-not-certain duplicate, unusual amount — left
+untouched for Jeff to review.
+
+### Section rules (Monthly Budget Cleanup)
+
+- **Status banner**: always present, always first, holds the one-line summary.
+- **Needs your eyes**: only if 1+ flagged items. The most actionable section
+  — placed near the top when present.
+- **Run details**: always present (window swept, sync status, transactions reviewed).
+- **Auto-fixed**: only if 1+ changes were made.
+
+Never render an empty table/list or a "None" placeholder — omit the section
+(heading + table/list) entirely instead. If both Auto-fixed and Needs your
+eyes are empty, the summary line should say so plainly and the email stays
+to a couple of sentences.
+
+### Files (Monthly Budget Cleanup)
+
+- `templates/monthly_all_clear.html` — clean sweep, nothing to flag (Auto-fixed optional)
+- `templates/monthly_needs_review.html` — clean sweep, N items flagged for review

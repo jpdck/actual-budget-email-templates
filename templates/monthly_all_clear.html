@@ -1,0 +1,63 @@
+<!--
+  Monthly Budget Cleanup -- All Clear
+  Subject: Monthly Budget Cleanup - {{MONTH_NAME}} {{YEAR}}
+
+  Used when the monthly sweep (last 30 days, all accounts) ran successfully and
+  found nothing worth flagging. Auto-fixed may still be present -- include that
+  section only if 1+ changes were made; if both Auto-fixed and Needs your eyes
+  are empty, this is a true no-op month and the summary line should say so plainly.
+
+  Placeholders to fill in:
+    {{MONTH_NAME}}       -- e.g. "July"
+    {{YEAR}}             -- e.g. "2026"
+    {{SUMMARY_LINE}}      -- one line, e.g. "Swept the last 30 days: fixed 4, nothing left to flag."
+    {{SYNC_STATUS}}       -- e.g. "Success (5 of 5 accounts synced)"
+    {{TOTAL_REVIEWED}}    -- count of transactions reviewed in the 30-day window
+    {{AUTO_FIXED_ROWS}}   -- <li> items for Auto-fixed (transaction, what changed, why it was safe)
+-->
+<div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;color:#1f2328;">
+
+  <!-- Status banner -->
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#d1e7dd;border:1px solid #a3cfbb;border-radius:6px;margin-bottom:20px;">
+    <tr>
+      <td style="padding:16px 20px;">
+        <p style="margin:0;font-size:16px;font-weight:bold;color:#0f5132;">
+          {{SUMMARY_LINE}}
+        </p>
+      </td>
+    </tr>
+  </table>
+
+  <h1 style="font-size:18px;margin:0 0 12px 0;">Monthly Budget Cleanup &mdash; {{MONTH_NAME}} {{YEAR}}</h1>
+
+  <!-- Run details -->
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:13px;margin-bottom:20px;">
+    <tr>
+      <td style="padding:3px 0;color:#57606a;width:160px;">Window swept</td>
+      <td style="padding:3px 0;">Last 30 days, all accounts</td>
+    </tr>
+    <tr>
+      <td style="padding:3px 0;color:#57606a;">Sync status</td>
+      <td style="padding:3px 0;">{{SYNC_STATUS}}</td>
+    </tr>
+    <tr>
+      <td style="padding:3px 0;color:#57606a;">Transactions reviewed</td>
+      <td style="padding:3px 0;">{{TOTAL_REVIEWED}}</td>
+    </tr>
+  </table>
+
+  <!-- Auto-fixed -- OMIT entirely if nothing was changed -->
+  <h2 style="font-size:15px;margin:0 0 8px 0;">Auto-fixed</h2>
+  <p style="margin:0 0 10px 0;font-size:13px;color:#57606a;line-height:1.5;">
+    Clear-cut stuff, handled automatically -- no need to double-check these.
+  </p>
+  <ul style="font-size:13px;margin:0 0 20px 0;padding-left:20px;line-height:1.7;">
+    {{AUTO_FIXED_ROWS}}
+    <!-- Item template: <li><strong>{{transaction}}</strong> &mdash; {{what_changed}}. {{why_safe}}</li> -->
+  </ul>
+
+  <p style="margin:0;font-size:13px;color:#57606a;line-height:1.5;">
+    Nothing needed a second look this month. Same time next month.
+  </p>
+
+</div>
