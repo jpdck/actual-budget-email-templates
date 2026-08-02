@@ -1,0 +1,56 @@
+<!--
+  Monthly Budget Cleanup -- FAILED
+  Subject: Monthly Budget Cleanup -- FAILED ({{MONTH_NAME}} {{YEAR}})
+
+  Used when setup fails outright (actual-budget/thunderbird-mail tools unreachable,
+  budget file won't open, or MEMORY.json unreadable). No sweep is attempted in this
+  variant -- no pairing, no flags, no cache refresh, no retention. Run details and
+  all data sections are omitted.
+
+  Placeholders to fill in:
+    {{MONTH_NAME}}       -- e.g. "August"
+    {{YEAR}}             -- e.g. "2026"
+    {{FAILURE_DETAIL}}   -- plain-language description of what check failed / what error occurred
+    {{CONSECUTIVE_NOTE}} -- OMIT this paragraph unless consecutive_failures >= 3; if present,
+                            e.g. "This is the 3rd month in a row this has failed -- something
+                            is properly stuck and worth a look."
+-->
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"></head><body><div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;color:#1f2328;">
+
+  <!-- Status banner -->
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f8d7da;border:1px solid #f1aeb5;border-radius:6px;margin-bottom:20px;">
+    <tbody><tr>
+      <td style="padding:16px 20px;">
+        <p style="margin:0;font-size:16px;font-weight:bold;color:#842029;">
+          Couldn't run this month's cleanup sweep
+        </p>
+      </td>
+    </tr>
+  </tbody></table>
+
+  <h1 style="font-size:18px;margin:0 0 12px 0;">Monthly Budget Cleanup — {{MONTH_NAME}} {{YEAR}}</h1>
+
+  <!-- Failure detail -->
+  <h2 style="font-size:15px;margin:0 0 8px 0;">What happened</h2>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#fff5f5;border:1px solid #f1aeb5;border-radius:6px;margin-bottom:16px;">
+    <tbody><tr>
+      <td style="padding:14px 16px;font-size:14px;line-height:1.5;">
+        {{FAILURE_DETAIL}}
+      </td>
+    </tr>
+  </tbody></table>
+
+  <!-- Consecutive-failure escalation -- OMIT unless consecutive_failures >= 3 -->
+  <p style="margin:0 0 16px 0;font-size:14px;font-weight:bold;color:#842029;line-height:1.5;">
+    {{CONSECUTIVE_NOTE}}
+  </p>
+
+  <p style="margin:0;font-size:13px;color:#57606a;line-height:1.5;">
+    No sweep ran, so nothing was paired, flagged, refreshed, or pruned -- your budget and
+    the shared memory file are exactly as they were. The daily check will keep an eye on
+    this, and the sweep will try again next month.
+  </p>
+
+</div>
+</body></html>
