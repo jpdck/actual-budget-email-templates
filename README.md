@@ -159,6 +159,7 @@ Never render an empty list or a "None" placeholder - omit the section
 
 | Situation | File | Subject |
 |---|---|---|
+| Setup failed (tools, budget file, or MEMORY.json) | `templates/monthly_review_failed.html` | `[ribbonOS] monthly review: FAIL - <date>` |
 | Monthly review report | `templates/monthly_budget_review.html` | `[ribbonOS] monthly review: INFO - <date>` |
 
 A full HTML document (it carries a `<head>` for the phone stacking rule) with
@@ -168,3 +169,9 @@ move this month, a three-step plan, and a link to the full report. The
 over-budget styling (amber bar + OVER tag) is shown on `cat_3`; apply it to
 whichever category is actually over. `{{ category_summary }}` replaces the
 old hardcoded "four categories held the line" line.
+
+`monthly_review_failed.html` is a fragment like the other FAIL templates but
+uses the review's `{{ snake_case }}` placeholders (`month`, `year`,
+`generated_date`, `failed_step`, `failure_detail`, optional
+`consecutive_note` at 3+ consecutive failures). No report is saved and the
+advice tracker is untouched on a failed run.
