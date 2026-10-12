@@ -1,47 +1,54 @@
 <!--
-  Hourly Receipt Processor -- Summary
-  Subject: Receipt Processor -- {{LOGGED_COUNT}} logged ({{DATE}} {{TIME}})
+Receipt Processor - Summary
+  Subject: [ribbonOS] receipts: OK - {{DATE}} {{TIME}}
 
-  Used for every normal run (tools reachable, scan completed) regardless of
-  outcome -- covers everything from "nothing in the inbox" to "several
-  transactions logged." Logged section is included only if non-empty;
-  Skipped is always a one-line count (never a per-email list, since
-  newsletters/non-receipts aren't worth enumerating). Follow-up on
-  ambiguous receipts is handled per-transaction, not in this summary.
+  Any normal run that logged something. Logged only if 1+ transactions were
+  created. Skipped (non-receipt) mail is always a count, never a list.
+  Follow-ups on ambiguous receipts are handled per transaction, not here.
 
-  Placeholders to fill in:
-    {{DATE}}              -- today's date, e.g. "Jul 27, 2026"
-    {{TIME}}              -- run time, e.g. "3:00 PM"
-    {{SUMMARY_LINE}}       -- one line, e.g. "Scanned 9 unread: logged 4, skipped 5."
-    {{SCANNED_COUNT}}      -- total unread emails scanned this run
-    {{LOGGED_COUNT}}       -- count of transactions created, used in subject + banner
-    {{SKIPPED_COUNT}}      -- count of non-receipt emails marked read and left in place
-    {{LOGGED_ROWS}}        -- <li> items for Logged (merchant, amount, account, category)
+  Placeholders:
+    {{DATE}}                  - run date, ISO 8601, e.g. 2026-10-12
+    {{TIME}}                  - run time, 24h, e.g. 15:00
+    {{SUMMARY_LINE}}          - one line, e.g. "Logged 4, skipped 5."
+    {{SCANNED_COUNT}}         - unread messages scanned this run
+    {{LOGGED_COUNT}}          - transactions created
+    {{SKIPPED_COUNT}}         - non-receipts marked read and left in place
+    {{LOGGED_ROWS}}           - <tr> rows: Merchant, Amount, Account, Category
 -->
-<div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;color:#1f2328;">
-
-  <!-- Status banner -->
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#d1e7dd;border:1px solid #a3cfbb;border-radius:6px;margin-bottom:20px;">
-    <tr>
-      <td style="padding:16px 20px;">
-        <p style="margin:0;font-size:16px;font-weight:bold;color:#0f5132;">
-          {{SUMMARY_LINE}}
-        </p>
-      </td>
-    </tr>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#e9e4d8" style="background-color:#e9e4d8;">
+  <tr><td align="center" style="padding:24px 12px;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" bgcolor="#f3f0e8" style="width:100%;max-width:600px;background-color:#f3f0e8;border:1px solid #c9c1b0;border-radius:2px;">
+    <tr><td style="padding:24px;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:16px;line-height:24px;color:#1b1d20;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="32"><tr><td width="32" height="3" bgcolor="#c41230" style="width:32px;height:3px;background-color:#c41230;font-size:0;line-height:0;">&nbsp;</td></tr></table>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:12px;">
+        <tr>
+          <td align="left" valign="middle" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#585c62;">RIBBONOS / RECEIPTS</td>
+          <td align="right" valign="middle"><span style="display:inline-block;padding:2px 8px;border-radius:999px;color:#3a6634;border:1px solid #3a6634;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;">OK</span></td>
+        </tr>
+      </table>
+      <h3 style="margin:12px 0 16px 0;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:18px;line-height:24px;font-weight:700;color:#1b1d20;">{{SUMMARY_LINE}}</h3>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#ddd6c7" style="background-color:#ddd6c7;border-radius:2px;">
+        <tr><td style="padding:12px 16px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+          <tr><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;color:#585c62;padding:0 24px 0 0;white-space:nowrap;">run</td><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;">{{DATE}} {{TIME}}</td></tr>
+          <tr><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;color:#585c62;padding:0 24px 0 0;white-space:nowrap;">scanned</td><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;">{{SCANNED_COUNT}}</td></tr>
+          <tr><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;color:#585c62;padding:0 24px 0 0;white-space:nowrap;">logged</td><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;">{{LOGGED_COUNT}}</td></tr>
+          <tr><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;color:#585c62;padding:0 24px 0 0;white-space:nowrap;">skipped</td><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;">{{SKIPPED_COUNT}} (not receipts)</td></tr>
+        </table>
+        </td></tr>
+      </table>
+      <!-- LOGGED - OMIT if zero transactions were created -->
+      <p style="margin:24px 0 0 0;padding-top:16px;border-top:1px solid #c9c1b0;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#1b1d20;">Logged</p>
+      <p style="margin:0 0 12px 0;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;color:#585c62;">Clear receipts, entered straight into the budget.</p>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;border:1px solid #857e70;">
+        <tr><th align="left" style="padding:8px 12px;background-color:#e9e4d8;border-bottom:1px solid #857e70;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#585c62;">Merchant</th><th align="right" style="padding:8px 12px;background-color:#e9e4d8;border-bottom:1px solid #857e70;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#585c62;">Amount</th><th align="left" style="padding:8px 12px;background-color:#e9e4d8;border-bottom:1px solid #857e70;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#585c62;">Account</th><th align="left" style="padding:8px 12px;background-color:#e9e4d8;border-bottom:1px solid #857e70;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#585c62;">Category</th></tr>
+        {{LOGGED_ROWS}}
+        <!-- Row template:
+        <tr><td style="padding:10px 12px;border-bottom:1px solid #c9c1b0;vertical-align:top;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;color:#1b1d20;">{{merchant}}</td><td align="right" style="padding:10px 12px;border-bottom:1px solid #c9c1b0;vertical-align:top;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;">{{amount}}</td><td style="padding:10px 12px;border-bottom:1px solid #c9c1b0;vertical-align:top;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;color:#1b1d20;">{{account}}</td><td style="padding:10px 12px;border-bottom:1px solid #c9c1b0;vertical-align:top;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;color:#1b1d20;">{{category}}</td></tr>
+        -->
+      </table>
+    </td></tr>
+    <tr><td style="padding:12px 24px;border-top:1px solid #c9c1b0;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;color:#585c62;">Sent by ribbonOS &middot; <span style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:500;color:#1b1d20;">jpdck<span style="color:#c41230;">.</span>dev</span></td></tr>
   </table>
-
-  <h1 style="font-size:18px;margin:0 0 12px 0;">Receipt Processor</h1>
-  <p style="margin:0 0 20px 0;font-size:13px;color:#57606a;">{{DATE}} &middot; {{TIME}} &middot; {{SCANNED_COUNT}} unread scanned &middot; {{SKIPPED_COUNT}} skipped (not receipts)</p>
-
-  <!-- Logged -- OMIT entirely if zero transactions were created -->
-  <h2 style="font-size:15px;margin:0 0 8px 0;color:#0f5132;">Logged</h2>
-  <p style="margin:0 0 10px 0;font-size:13px;color:#57606a;line-height:1.5;">
-    Clear receipts, entered straight into the budget.
-  </p>
-  <ul style="font-size:13px;margin:0;padding-left:20px;line-height:1.7;">
-    {{LOGGED_ROWS}}
-    <!-- Item template: <li><strong>{{merchant}}</strong> &mdash; {{amount}}, {{account}}, {{category}}</li> -->
-  </ul>
-
-</div>
+  </td></tr>
+</table>

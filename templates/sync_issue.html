@@ -1,114 +1,81 @@
 <!--
-  Actual Budget -- Daily Refresh: Sync Issue
-  Subject: Actual Budget -- Daily Refresh: Sync Issue ({{DATE}})
+Daily Refresh - Sync issue
+  Subject: [ribbonOS] daily refresh: WARN - {{DATE}}
 
-  Used when the bank sync failed or timed out, but the review still ran (against
-  last-known/stale data). Include the "Needs your attention" table only if 1+ items
-  were flagged; include "Auto-categorized" only if 1+ transactions were categorized;
-  include "New rules created" only if 1+ rules were created. Omit any section with
-  no content entirely (do not render empty tables or "None" placeholders).
+  Bank sync failed or timed out; the review still ran on last-known data.
+  Include each optional section only if it has rows. Never render an empty
+  table or a "None" placeholder.
 
-  Placeholders to fill in:
-    {{DATE}}                -- today's date, e.g. "Jul 26, 2026"
-    {{START_DATE}}          -- 7 days before today
-    {{END_DATE}}            -- today
-    {{SYNC_STATUS}}         -- e.g. "Partial (2 of 5 accounts synced)" or "Timed out"
-    {{TOTAL_REVIEWED}}      -- count of transactions reviewed in the window
-    {{ATTENTION_ROWS}}      -- <tr> rows for the Needs your attention table (Date, Payee, Amount, Reason)
-    {{AUTO_CATEGORIZED_ROWS}} -- <tr> rows for the Auto-categorized table (Payee, Amount, Category)
-    {{NEW_RULES_LIST}}      -- <li> items naming payee pattern + category
-    {{FAILURE_DETAIL}}      -- plain-language description of the sync issue
+  Placeholders:
+    {{DATE}}                  - run date, ISO 8601, e.g. 2026-10-12
+    {{START_DATE}}            - 7 days before today, ISO
+    {{END_DATE}}              - today, ISO
+    {{SYNC_STATUS}}           - e.g. "partial, 2 of 5 accounts" or "timed out"
+    {{TOTAL_REVIEWED}}        - transactions reviewed in the window
+    {{ATTENTION_ROWS}}        - <tr> rows: Date, Payee, Amount, Reason
+    {{AUTO_CATEGORIZED_ROWS}} - <tr> rows: Payee, Amount, Category
+    {{NEW_RULES_LIST}}        - <tr> rows: Payee pattern, Category
+    {{FAILURE_DETAIL}}        - plain-language description of the sync issue
 -->
-<div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;color:#1f2328;">
-
-  <!-- Status banner -->
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#fff3cd;border:1px solid #ffe69c;border-radius:6px;margin-bottom:20px;">
-    <tr>
-      <td style="padding:16px 20px;">
-        <p style="margin:0;font-size:16px;font-weight:bold;color:#664d03;">
-          Sync issue &mdash; bank sync did not complete, review ran against last-known data
-        </p>
-      </td>
-    </tr>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#e9e4d8" style="background-color:#e9e4d8;">
+  <tr><td align="center" style="padding:24px 12px;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" bgcolor="#f3f0e8" style="width:100%;max-width:600px;background-color:#f3f0e8;border:1px solid #c9c1b0;border-radius:2px;">
+    <tr><td style="padding:24px;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:16px;line-height:24px;color:#1b1d20;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="32"><tr><td width="32" height="3" bgcolor="#c41230" style="width:32px;height:3px;background-color:#c41230;font-size:0;line-height:0;">&nbsp;</td></tr></table>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:12px;">
+        <tr>
+          <td align="left" valign="middle" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#585c62;">RIBBONOS / DAILY REFRESH</td>
+          <td align="right" valign="middle"><span style="display:inline-block;padding:2px 8px;border-radius:999px;color:#8a5200;border:1px solid #8a5200;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;">WARN</span></td>
+        </tr>
+      </table>
+      <h3 style="margin:12px 0 16px 0;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:18px;line-height:24px;font-weight:700;color:#1b1d20;">Bank sync didn't finish. Reviewed last-known data.</h3>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#ddd6c7" style="background-color:#ddd6c7;border-radius:2px;">
+        <tr><td style="padding:12px 16px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+          <tr><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;color:#585c62;padding:0 24px 0 0;white-space:nowrap;">range</td><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;">{{START_DATE}} to {{END_DATE}}</td></tr>
+          <tr><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;color:#585c62;padding:0 24px 0 0;white-space:nowrap;">sync</td><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;">{{SYNC_STATUS}}</td></tr>
+          <tr><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;color:#585c62;padding:0 24px 0 0;white-space:nowrap;">reviewed</td><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;">{{TOTAL_REVIEWED}}</td></tr>
+        </table>
+        </td></tr>
+      </table>
+      <!-- NEEDS YOUR ATTENTION - OMIT this whole block if nothing was flagged -->
+      <p style="margin:24px 0 0 0;padding-top:16px;border-top:1px solid #c9c1b0;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#1b1d20;">Needs your attention</p>
+      <p style="margin:0 0 12px 0;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;color:#585c62;">Couldn't categorize these with confidence.</p>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;border:1px solid #857e70;">
+        <tr><th align="left" style="padding:8px 12px;background-color:#e9e4d8;border-bottom:1px solid #857e70;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#585c62;">Date</th><th align="left" style="padding:8px 12px;background-color:#e9e4d8;border-bottom:1px solid #857e70;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#585c62;">Payee</th><th align="right" style="padding:8px 12px;background-color:#e9e4d8;border-bottom:1px solid #857e70;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#585c62;">Amount</th><th align="left" style="padding:8px 12px;background-color:#e9e4d8;border-bottom:1px solid #857e70;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#585c62;">Reason</th></tr>
+        {{ATTENTION_ROWS}}
+        <!-- Row template:
+        <tr><td style="padding:10px 12px;border-bottom:1px solid #c9c1b0;vertical-align:top;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;">{{date}}</td><td style="padding:10px 12px;border-bottom:1px solid #c9c1b0;vertical-align:top;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;color:#1b1d20;">{{payee}}</td><td align="right" style="padding:10px 12px;border-bottom:1px solid #c9c1b0;vertical-align:top;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;">{{amount}}</td><td style="padding:10px 12px;border-bottom:1px solid #c9c1b0;vertical-align:top;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;color:#1b1d20;">{{reason}}</td></tr>
+        -->
+      </table>
+      <!-- AUTO-CATEGORIZED - OMIT if zero transactions were categorized -->
+      <p style="margin:24px 0 0 0;padding-top:16px;border-top:1px solid #c9c1b0;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#1b1d20;">Auto-categorized</p>
+      <div style="height:12px;line-height:12px;font-size:0;">&nbsp;</div>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;border:1px solid #857e70;">
+        <tr><th align="left" style="padding:8px 12px;background-color:#e9e4d8;border-bottom:1px solid #857e70;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#585c62;">Payee</th><th align="right" style="padding:8px 12px;background-color:#e9e4d8;border-bottom:1px solid #857e70;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#585c62;">Amount</th><th align="left" style="padding:8px 12px;background-color:#e9e4d8;border-bottom:1px solid #857e70;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#585c62;">Category</th></tr>
+        {{AUTO_CATEGORIZED_ROWS}}
+        <!-- Row template:
+        <tr><td style="padding:10px 12px;border-bottom:1px solid #c9c1b0;vertical-align:top;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;color:#1b1d20;">{{payee}}</td><td align="right" style="padding:10px 12px;border-bottom:1px solid #c9c1b0;vertical-align:top;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;">{{amount}}</td><td style="padding:10px 12px;border-bottom:1px solid #c9c1b0;vertical-align:top;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;color:#1b1d20;">{{category}}</td></tr>
+        -->
+      </table>
+      <!-- NEW RULES - OMIT if zero rules were created -->
+      <p style="margin:24px 0 0 0;padding-top:16px;border-top:1px solid #c9c1b0;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#1b1d20;">New rules</p>
+      <div style="height:12px;line-height:12px;font-size:0;">&nbsp;</div>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;border:1px solid #857e70;">
+        <tr><th align="left" style="padding:8px 12px;background-color:#e9e4d8;border-bottom:1px solid #857e70;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#585c62;">Payee pattern</th><th align="left" style="padding:8px 12px;background-color:#e9e4d8;border-bottom:1px solid #857e70;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#585c62;">Category</th></tr>
+        {{NEW_RULES_LIST}}
+        <!-- Row template:
+        <tr><td style="padding:10px 12px;border-bottom:1px solid #c9c1b0;vertical-align:top;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;">{{payee_pattern}}</td><td style="padding:10px 12px;border-bottom:1px solid #c9c1b0;vertical-align:top;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;color:#1b1d20;">{{category}}</td></tr>
+        -->
+      </table>
+      <p style="margin:24px 0 0 0;padding-top:16px;border-top:1px solid #c9c1b0;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#1b1d20;">Sync detail</p>
+      <div style="height:12px;line-height:12px;font-size:0;">&nbsp;</div>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#e9e4d8" style="background-color:#e9e4d8;border-radius:2px;">
+        <tr><td style="padding:12px 16px;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;color:#1b1d20;">{{FAILURE_DETAIL}}</td></tr>
+      </table>
+      <p style="margin:24px 0 0 0;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;color:#585c62;">Anything above was categorized against possibly stale data.</p>
+    </td></tr>
+    <tr><td style="padding:12px 24px;border-top:1px solid #c9c1b0;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;color:#585c62;">Sent by ribbonOS &middot; <span style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:500;color:#1b1d20;">jpdck<span style="color:#c41230;">.</span>dev</span></td></tr>
   </table>
-
-  <h1 style="font-size:18px;margin:0 0 12px 0;">Actual Budget &mdash; Daily Refresh</h1>
-
-  <!-- NEEDS YOUR ATTENTION -- most important section, placed near the top when non-empty -->
-  <!-- OMIT this entire block if no transactions were flagged -->
-  <h2 style="font-size:15px;margin:0 0 8px 0;color:#842029;">Needs your attention</h2>
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;background-color:#fff5f5;border:1px solid #f1aeb5;border-radius:6px;margin-bottom:20px;overflow:hidden;">
-    <tr style="background-color:#f8d7da;">
-      <th align="left" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#842029;border-bottom:1px solid #f1aeb5;">Date</th>
-      <th align="left" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#842029;border-bottom:1px solid #f1aeb5;">Payee</th>
-      <th align="right" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#842029;border-bottom:1px solid #f1aeb5;">Amount</th>
-      <th align="left" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#842023;border-bottom:1px solid #f1aeb5;">Reason</th>
-    </tr>
-    {{ATTENTION_ROWS}}
-    <!-- Row template:
-    <tr>
-      <td style="padding:10px 12px;font-size:13px;border-bottom:1px solid #f1aeb5;">{{date}}</td>
-      <td style="padding:10px 12px;font-size:13px;border-bottom:1px solid #f1aeb5;">{{payee}}</td>
-      <td align="right" style="padding:10px 12px;font-size:13px;border-bottom:1px solid #f1aeb5;">{{amount}}</td>
-      <td style="padding:10px 12px;font-size:13px;border-bottom:1px solid #f1aeb5;">{{reason}}</td>
-    </tr>
-    -->
-  </table>
-
-  <!-- Run details -->
-  <h2 style="font-size:15px;margin:0 0 8px 0;">Run details</h2>
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:13px;margin-bottom:20px;">
-    <tr>
-      <td style="padding:3px 0;color:#57606a;width:160px;">Date range reviewed</td>
-      <td style="padding:3px 0;">{{START_DATE}} &ndash; {{END_DATE}}</td>
-    </tr>
-    <tr>
-      <td style="padding:3px 0;color:#57606a;">Sync status</td>
-      <td style="padding:3px 0;">{{SYNC_STATUS}}</td>
-    </tr>
-    <tr>
-      <td style="padding:3px 0;color:#57606a;">Transactions reviewed</td>
-      <td style="padding:3px 0;">{{TOTAL_REVIEWED}}</td>
-    </tr>
-  </table>
-
-  <!-- Auto-categorized -- OMIT entirely if zero transactions were categorized -->
-  <h2 style="font-size:15px;margin:0 0 8px 0;">Auto-categorized</h2>
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;border:1px solid #d0d7de;border-radius:6px;margin-bottom:20px;">
-    <tr style="background-color:#f6f8fa;">
-      <th align="left" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#57606a;border-bottom:1px solid #d0d7de;">Payee</th>
-      <th align="right" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#57606a;border-bottom:1px solid #d0d7de;">Amount</th>
-      <th align="left" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#57606a;border-bottom:1px solid #d0d7de;">Category</th>
-    </tr>
-    {{AUTO_CATEGORIZED_ROWS}}
-    <!-- Row template:
-    <tr>
-      <td style="padding:10px 12px;font-size:13px;border-bottom:1px solid #d0d7de;">{{payee}}</td>
-      <td align="right" style="padding:10px 12px;font-size:13px;border-bottom:1px solid #d0d7de;">{{amount}}</td>
-      <td style="padding:10px 12px;font-size:13px;border-bottom:1px solid #d0d7de;">{{category}}</td>
-    </tr>
-    -->
-  </table>
-
-  <!-- New rules created -- OMIT entirely if zero rules were created -->
-  <h2 style="font-size:15px;margin:0 0 8px 0;">New rules created</h2>
-  <ul style="font-size:13px;margin:0 0 20px 0;padding-left:20px;line-height:1.6;">
-    {{NEW_RULES_LIST}}
-    <!-- Item template: <li>{{payee pattern}} &rarr; {{category}}</li> -->
-  </ul>
-
-  <!-- Failure detail -->
-  <h2 style="font-size:15px;margin:0 0 8px 0;">Sync issue detail</h2>
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#fff3cd;border:1px solid #ffe69c;border-radius:6px;margin-bottom:8px;">
-    <tr>
-      <td style="padding:14px 16px;font-size:14px;line-height:1.5;">
-        {{FAILURE_DETAIL}}
-      </td>
-    </tr>
-  </table>
-  <p style="margin:0;font-size:13px;color:#57606a;line-height:1.5;">
-    Categorization above was attempted against the last-known (possibly stale) transaction data,
-    since the bank sync did not complete successfully.
-  </p>
-
-</div>
+  </td></tr>
+</table>

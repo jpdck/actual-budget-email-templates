@@ -1,56 +1,49 @@
 <!--
-  Monthly Budget Cleanup -- FAILED
-  Subject: Monthly Budget Cleanup -- FAILED ({{MONTH_NAME}} {{YEAR}})
+Monthly Budget Cleanup - FAIL
+  Subject: [ribbonOS] monthly cleanup: FAIL - {{DATE}}
 
-  Used when setup fails outright (actual-budget/thunderbird-mail tools unreachable,
-  budget file won't open, or MEMORY.json unreadable). No sweep is attempted in this
-  variant -- no pairing, no flags, no cache refresh, no retention. Run details and
-  all data sections are omitted.
+  Setup failed (tools unreachable, budget file won't open, or MEMORY.json
+  unreadable). No sweep: no pairing, no flags, no cache refresh, no retention.
 
-  Placeholders to fill in:
-    {{MONTH_NAME}}       -- e.g. "August"
-    {{YEAR}}             -- e.g. "2026"
-    {{FAILURE_DETAIL}}   -- plain-language description of what check failed / what error occurred
-    {{CONSECUTIVE_NOTE}} -- OMIT this paragraph unless consecutive_failures >= 3; if present,
-                            e.g. "This is the 3rd month in a row this has failed -- something
-                            is properly stuck and worth a look."
+  Placeholders:
+    {{DATE}}                  - run date, ISO 8601, e.g. 2026-10-12
+    {{MONTH_NAME}}            - e.g. October
+    {{YEAR}}                  - e.g. 2026
+    {{FAILURE_DETAIL}}        - plain-language description of what failed
+    {{CONSECUTIVE_NOTE}}      - OMIT the paragraph unless consecutive_failures >= 3,
+                                  e.g. "Third month in a row. Something is properly stuck."
 -->
-<html><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8"></head><body><div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;color:#1f2328;">
-
-  <!-- Status banner -->
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f8d7da;border:1px solid #f1aeb5;border-radius:6px;margin-bottom:20px;">
-    <tbody><tr>
-      <td style="padding:16px 20px;">
-        <p style="margin:0;font-size:16px;font-weight:bold;color:#842029;">
-          Couldn't run this month's cleanup sweep
-        </p>
-      </td>
-    </tr>
-  </tbody></table>
-
-  <h1 style="font-size:18px;margin:0 0 12px 0;">Monthly Budget Cleanup — {{MONTH_NAME}} {{YEAR}}</h1>
-
-  <!-- Failure detail -->
-  <h2 style="font-size:15px;margin:0 0 8px 0;">What happened</h2>
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#fff5f5;border:1px solid #f1aeb5;border-radius:6px;margin-bottom:16px;">
-    <tbody><tr>
-      <td style="padding:14px 16px;font-size:14px;line-height:1.5;">
-        {{FAILURE_DETAIL}}
-      </td>
-    </tr>
-  </tbody></table>
-
-  <!-- Consecutive-failure escalation -- OMIT unless consecutive_failures >= 3 -->
-  <p style="margin:0 0 16px 0;font-size:14px;font-weight:bold;color:#842029;line-height:1.5;">
-    {{CONSECUTIVE_NOTE}}
-  </p>
-
-  <p style="margin:0;font-size:13px;color:#57606a;line-height:1.5;">
-    No sweep ran, so nothing was paired, flagged, refreshed, or pruned -- your budget and
-    the shared memory file are exactly as they were. The daily check will keep an eye on
-    this, and the sweep will try again next month.
-  </p>
-
-</div>
-</body></html>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#e9e4d8" style="background-color:#e9e4d8;">
+  <tr><td align="center" style="padding:24px 12px;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" bgcolor="#f3f0e8" style="width:100%;max-width:600px;background-color:#f3f0e8;border:1px solid #c9c1b0;border-radius:2px;">
+    <tr><td style="padding:24px;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:16px;line-height:24px;color:#1b1d20;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="32"><tr><td width="32" height="3" bgcolor="#c41230" style="width:32px;height:3px;background-color:#c41230;font-size:0;line-height:0;">&nbsp;</td></tr></table>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:12px;">
+        <tr>
+          <td align="left" valign="middle" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#585c62;">RIBBONOS / MONTHLY CLEANUP</td>
+          <td align="right" valign="middle"><span style="display:inline-block;padding:2px 8px;border-radius:999px;color:#ffffff;background-color:#c41230;border:1px solid #c41230;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;">FAIL</span></td>
+        </tr>
+      </table>
+      <h3 style="margin:12px 0 16px 0;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:18px;line-height:24px;font-weight:700;color:#1b1d20;">Cleanup sweep didn't run. Nothing was changed.</h3>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#f5dcda" style="background-color:#f5dcda;border-radius:2px;">
+        <tr><td style="padding:12px 16px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+          <tr><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;color:#585c62;padding:0 24px 0 0;white-space:nowrap;">month</td><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;">{{MONTH_NAME}} {{YEAR}}</td></tr>
+          <tr><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;color:#585c62;padding:0 24px 0 0;white-space:nowrap;">failed at</td><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;">setup</td></tr>
+          <tr><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;color:#585c62;padding:0 24px 0 0;white-space:nowrap;">changes</td><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;">none - budget and MEMORY.json untouched</td></tr>
+        </table>
+        </td></tr>
+      </table>
+      <p style="margin:24px 0 0 0;padding-top:16px;border-top:1px solid #c9c1b0;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#1b1d20;">What happened</p>
+      <div style="height:12px;line-height:12px;font-size:0;">&nbsp;</div>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#f5dcda" style="background-color:#f5dcda;border-radius:2px;">
+        <tr><td style="padding:12px 16px;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;color:#1b1d20;">{{FAILURE_DETAIL}}</td></tr>
+      </table>
+      <!-- CONSECUTIVE NOTE - OMIT unless consecutive_failures >= 3 -->
+      <p style="margin:16px 0 0 0;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:16px;line-height:24px;font-weight:700;color:#1b1d20;">{{CONSECUTIVE_NOTE}}</p>
+      <p style="margin:24px 0 0 0;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;color:#585c62;">The daily job keeps an eye on this. Next sweep runs next month.</p>
+    </td></tr>
+    <tr><td style="padding:12px 24px;border-top:1px solid #c9c1b0;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;color:#585c62;">Sent by ribbonOS &middot; <span style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:500;color:#1b1d20;">jpdck<span style="color:#c41230;">.</span>dev</span></td></tr>
+  </table>
+  </td></tr>
+</table>

@@ -1,57 +1,48 @@
 <!--
-  Weekly Budget Check -- All Clear
-  Subject: Weekly Budget Check -- All Clear ({{DATE}})
+Weekly Budget Check - All clear
+  Subject: [ribbonOS] weekly check: OK - {{DATE}}
 
-  Used when the run completed successfully and nothing needs a heads-up (no Cautions,
-  no Budget Bending-to-Breaking items). Wins may or may not be present -- include the
-  Wins section only if there's at least one genuine, notable win.
+  Clean run, no Cautions, no Bending-to-Breaking. Wins only if there's at
+  least one genuine, notable win.
 
-  Placeholders to fill in:
-    {{DATE}}                -- today's date, e.g. "Jul 26, 2026"
-    {{COMPARISON_SUMMARY}}  -- condensed line, e.g. "Comparisons: WoW, MoM, YoY -- 14 categories reviewed"
-    {{WINS_ROWS}}           -- <tr> rows for the Wins table (Category, What improved, Comparison)
+  Placeholders:
+    {{DATE}}                  - run date, ISO 8601, e.g. 2026-10-12
+    {{COMPARISON_SUMMARY}}    - one line, e.g. "WoW, MoM, YoY / 14 categories"
+    {{WINS_ROWS}}             - <tr> rows: Category, What improved, Vs.
 -->
-<div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;color:#1f2328;">
-
-  <!-- Status banner -->
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#d1e7dd;border:1px solid #a3cfbb;border-radius:6px;margin-bottom:20px;">
-    <tr>
-      <td style="padding:16px 20px;">
-        <p style="margin:0;font-size:16px;font-weight:bold;color:#0f5132;">
-          All clear -- nothing needs your attention this week
-        </p>
-      </td>
-    </tr>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#e9e4d8" style="background-color:#e9e4d8;">
+  <tr><td align="center" style="padding:24px 12px;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" bgcolor="#f3f0e8" style="width:100%;max-width:600px;background-color:#f3f0e8;border:1px solid #c9c1b0;border-radius:2px;">
+    <tr><td style="padding:24px;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:16px;line-height:24px;color:#1b1d20;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="32"><tr><td width="32" height="3" bgcolor="#c41230" style="width:32px;height:3px;background-color:#c41230;font-size:0;line-height:0;">&nbsp;</td></tr></table>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:12px;">
+        <tr>
+          <td align="left" valign="middle" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#585c62;">RIBBONOS / WEEKLY CHECK</td>
+          <td align="right" valign="middle"><span style="display:inline-block;padding:2px 8px;border-radius:999px;color:#3a6634;border:1px solid #3a6634;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;">OK</span></td>
+        </tr>
+      </table>
+      <h3 style="margin:12px 0 16px 0;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:18px;line-height:24px;font-weight:700;color:#1b1d20;">Nothing to flag this week.</h3>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#ddd6c7" style="background-color:#ddd6c7;border-radius:2px;">
+        <tr><td style="padding:12px 16px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+          <tr><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;color:#585c62;padding:0 24px 0 0;white-space:nowrap;">week of</td><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;">{{DATE}}</td></tr>
+          <tr><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;color:#585c62;padding:0 24px 0 0;white-space:nowrap;">compared</td><td valign="top" style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;">{{COMPARISON_SUMMARY}}</td></tr>
+        </table>
+        </td></tr>
+      </table>
+      <!-- WINS - OMIT if there's nothing genuinely notable -->
+      <p style="margin:24px 0 0 0;padding-top:16px;border-top:1px solid #c9c1b0;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#1b1d20;">Wins</p>
+      <p style="margin:0 0 12px 0;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;color:#585c62;">Trending the right way. Worth noticing, even when it's just steady.</p>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;border:1px solid #857e70;">
+        <tr><th align="left" style="padding:8px 12px;background-color:#e9e4d8;border-bottom:1px solid #857e70;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#585c62;">Category</th><th align="left" style="padding:8px 12px;background-color:#e9e4d8;border-bottom:1px solid #857e70;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#585c62;">What improved</th><th align="left" style="padding:8px 12px;background-color:#e9e4d8;border-bottom:1px solid #857e70;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;line-height:16px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#585c62;">Vs.</th></tr>
+        {{WINS_ROWS}}
+        <!-- Row template:
+        <tr><td style="padding:10px 12px;border-bottom:1px solid #c9c1b0;vertical-align:top;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;color:#1b1d20;">{{category}}</td><td style="padding:10px 12px;border-bottom:1px solid #c9c1b0;vertical-align:top;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;color:#1b1d20;">{{what_improved}}</td><td style="padding:10px 12px;border-bottom:1px solid #c9c1b0;vertical-align:top;font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;line-height:20px;color:#1b1d20;">{{comparison}}</td></tr>
+        -->
+      </table>
+      <p style="margin:24px 0 0 0;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;color:#585c62;">Nothing else stood out, good or bad. Same time next week.</p>
+    </td></tr>
+    <tr><td style="padding:12px 24px;border-top:1px solid #c9c1b0;font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;color:#585c62;">Sent by ribbonOS &middot; <span style="font-family:'Martian Mono','SF Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:500;color:#1b1d20;">jpdck<span style="color:#c41230;">.</span>dev</span></td></tr>
   </table>
-
-  <h1 style="font-size:18px;margin:0 0 12px 0;">Weekly Budget Check</h1>
-
-  <!-- Run details -->
-  <p style="margin:0 0 20px 0;font-size:13px;color:#57606a;">{{COMPARISON_SUMMARY}}</p>
-
-  <!-- Wins -- OMIT this entire block if there's nothing genuinely notable -->
-  <h2 style="font-size:15px;margin:0 0 8px 0;color:#0f5132;">Wins</h2>
-  <p style="margin:0 0 10px 0;font-size:13px;color:#57606a;line-height:1.5;">
-    A few things trending the right direction -- worth noticing, even if it's just steady progress.
-  </p>
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;background-color:#f4fbf7;border:1px solid #a3cfbb;border-radius:6px;margin-bottom:20px;overflow:hidden;">
-    <tr style="background-color:#d1e7dd;">
-      <th align="left" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#0f5132;border-bottom:1px solid #a3cfbb;">Category</th>
-      <th align="left" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#0f5132;border-bottom:1px solid #a3cfbb;">What improved</th>
-      <th align="left" style="padding:10px 12px;font-size:12px;text-transform:uppercase;color:#0f5132;border-bottom:1px solid #a3cfbb;">Vs.</th>
-    </tr>
-    {{WINS_ROWS}}
-    <!-- Row template:
-    <tr>
-      <td style="padding:10px 12px;font-size:13px;border-bottom:1px solid #a3cfbb;">{{category}}</td>
-      <td style="padding:10px 12px;font-size:13px;border-bottom:1px solid #a3cfbb;">{{what_improved}}</td>
-      <td style="padding:10px 12px;font-size:13px;border-bottom:1px solid #a3cfbb;">{{comparison}}</td>
-    </tr>
-    -->
-  </table>
-
-  <p style="margin:0;font-size:13px;color:#57606a;line-height:1.5;">
-    Nothing else stood out this week, good or concerning. Same time next week.
-  </p>
-
-</div>
+  </td></tr>
+</table>
